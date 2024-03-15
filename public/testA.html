@@ -32,7 +32,10 @@
 
         function fetchData() {
             fetch("http://pdf.gemmasuits.com/schedulers/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury", {
-                method: 'GET'
+                method: 'GET' 
+               ,headers:{
+                    Accept: 'application/json','Content-Type': 'application/json'
+               }
             })
             .then(response => {
                 if (!response.ok) {
