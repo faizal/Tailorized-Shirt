@@ -31,11 +31,13 @@
         document.getElementById("fetchButton").addEventListener("click", fetchData);
 
         function fetchData() {
-            fetch("http://pdf.gemmasuits.com/schedulers/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury", {
-                method: 'GET' 
-               ,headers:{
-                    Accept: 'application/json','Content-Type': 'application/json'
-               }
+            fetch("https://tailorized.ai/3d/cfc/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'application/json','Content-Type': 'application/json'
+                    'Cookie': 'CFID=1399596; CFTOKEN=83115218'
+                }
             })
             .then(response => {
                 if (!response.ok) {
