@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 20px;
+            font-size: 16px;
+        }
+
+        #responseData {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button id="fetchButton">Fetch Data</button>
+    <div id="responseData"></div>
+
+    <script>
+        document.getElementById("fetchButton").addEventListener("click", fetchData);
+
+        function fetchData() {
+            fetch("https://tailorized.ai/3d/cfc/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Access-Control-Allow-Origin': 'https://tailorized.ai/',
+                    'Cookie': 'CFID=1399596; CFTOKEN=83115218'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("responseData").innerText = JSON.stringify(data);
+            })
+            .catch(error => {
+                document.getElementById("responseData").innerText = "Error: " + error.message;
+            });
+        }
+    </script>
+</body>
+</html>
