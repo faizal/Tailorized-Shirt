@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>T-Shirt Configurator</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+      }
+      #text-input {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 5px;
+      }
+      #update-button {
+        position: absolute;
+        top: 10px;
+        left: 150px;
+        padding: 5px;
+        cursor: pointer;
+        background-color: #0074d9;
+        color: white;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="text-input" placeholder="Enter custom text">
+    <button id="update-button">Update Text</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/GLTFLoader.js"></script>
+    <!-- <script> -->
+
+    <script>
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Load the t-shirt model
+      const loader = new GLTFLoader();
+      let tShirtModel;
+
+      let customText = 'Your Custom Text'; // Default text
+      const customTextCanvas = document.createElement('canvas');
+      const customTextContext = customTextCanvas.getContext('2d');
+
+      loader.load("/shirt_baked_collapsed.glb", (gltf) => {
+        tShirtModel = gltf.scene;
+        scene.add(tShirtModel);
+
+        function updateCustomText() {
+          customText = document.getElementById('text-input').value;
+          customTextContext.clearRect(0, 0, customTextCanvas.width, customTextCanvas.height);
+          customTextContext.fillStyle = 'white';
+          customTextContext.font = '24px Arial';
+          customTextContext.fillText(customText, 10, 30);
+
+          const textTexture = new THREE.CanvasTexture(customTextCanvas);
+
+          tShirtModel.traverse((child) => {
+            if (child.isMesh) {
+              child.material.map = textTexture;
+              child.material.needsUpdate = true;
+            }
+          });
+        }
+
+        document.getElementById('update-button').addEventListener('click', updateCustomText);
+
+        updateCustomText();
+      });
+
+      // Handle user interactions for text positioning
+
+      camera.position.z = 5;
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      };
+
+      animate();
+    </script>
+  </body>
+</html>
