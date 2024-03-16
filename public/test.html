@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Data 16Mar-657</title>
+    <title>Fetch Data 16Mar-703</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,7 +34,8 @@
             fetch("https://tailorized.ai/3d/cfc/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury", {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Access-Control-Allow-Origin':'https://tailorized.ai/'
                 }
             })
             .then(response => {
