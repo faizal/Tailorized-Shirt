@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data 17mar6pm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 20px;
+            font-size: 16px;
+        }
+
+        #responseData {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button id="fetchButton">Fetch Data</button>
+    <div id="responseData"></div>
+
+    <script>
+        document.getElementById("fetchButton").addEventListener("click", fetchData);
+
+        function fetchData() {
+            fetch("https://tailoredclub.com/Tailorized.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury", {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("responseData").innerText = JSON.stringify(data);
+            })
+            .catch(error => {
+                document.getElementById("responseData").innerText = "Error: " + error.message;
+            });
+        }
+    </script>
+</body>
+</html>
