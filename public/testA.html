@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Data f</title>
+    <title>Fetch Data f1</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,6 +24,7 @@
     </style>
 </head>
 <body>
+     <div id="user-name"></div>
     <button id="fetchButton">Fetch Data</button>
     <div id="responseData"></div>
 
@@ -57,7 +58,6 @@
       .then(response => response.json())
       .then(data => {
         document.querySelector('#user-name').textContent = data.name
-        document.querySelector('#user-email').textContent = data.email
       })
   </script>
 </body>
