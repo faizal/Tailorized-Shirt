@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Data f1</title>
+    <title>Fetch Data f3</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,6 +25,7 @@
 </head>
 <body>
      <div id="user-name"></div>
+     <div id="fabricResponseData"></div>
     <button id="fetchButton">Fetch Data</button>
     <div id="responseData"></div>
 
@@ -52,6 +53,14 @@
             });
         }
     </script>
+
+<script>
+    fetch('http://pdf.gemmasuits.com/schedulers/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("fabricResponseData").innerText = data
+      })
+  </script>
 
 <script>
     fetch('https://jsonplaceholder.typicode.com/users/1')
