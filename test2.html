@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Data</title>
+    <title>Fetch Data -Shirtino</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,12 +31,10 @@
         document.getElementById("fetchButton").addEventListener("click", fetchData);
 
         function fetchData() {
-            fetch("https://tailorized.ai/3d/cfc/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury", {
+            fetch("https://shirtino.com/cfc/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Agent", {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Access-Control-Allow-Origin': 'https://tailorized.ai/',
-                    'Cookie': 'CFID=1399596; CFTOKEN=83115218'
+                    'Content-Type': 'application/json'
                 }
             })
             .then(response => {
