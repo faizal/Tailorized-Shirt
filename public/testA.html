@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Data f3</title>
+    <title>Fetch Data -Shirtino</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,8 +24,6 @@
     </style>
 </head>
 <body>
-     <div id="user-name"></div>
-     <div id="fabricResponseData"></div>
     <button id="fetchButton">Fetch Data</button>
     <div id="responseData"></div>
 
@@ -33,10 +31,10 @@
         document.getElementById("fetchButton").addEventListener("click", fetchData);
 
         function fetchData() {
-            fetch("http://pdf.gemmasuits.com/schedulers/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury", {
+            fetch("https://shirtino.com/cfc/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Agent", {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/json'
                 }
             })
             .then(response => {
@@ -53,21 +51,5 @@
             });
         }
     </script>
-
-<script>
-    fetch('http://pdf.gemmasuits.com/schedulers/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("fabricResponseData").innerText = data
-      })
-  </script>
-
-<script>
-    fetch('https://jsonplaceholder.typicode.com/users/1')
-      .then(response => response.json())
-      .then(data => {
-        document.querySelector('#user-name').textContent = data.name
-      })
-  </script>
 </body>
 </html>
