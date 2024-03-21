@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Data 17mar7am</title>
+    <title>Fetch Data - The City</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,7 +31,7 @@
         document.getElementById("fetchButton").addEventListener("click", fetchData);
 
         function fetchData() {
-            fetch("https://tailorized.ai/3d/cfc/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=Luxury", {
+            fetch("https://tailorized.ai/3d/cfc/app.cfc?wsdl&method=populateShirtingFabricsPath&categoryName=The City", {
                 method: 'GET'
             })
             .then(response => {
